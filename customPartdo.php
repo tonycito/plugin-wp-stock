@@ -1,10 +1,28 @@
 <?php
 /**
- * Plugin Name: Custom Partdo WC Plugin - by Abraham Peña
- * Description: Muestra el stock numérico reemplazando la función partdo_product_type1,2,3 del tema padre Partdo, cuando se actualice el plugin y vaya a la ruta /Applications/MAMP/htdocs/telsis/wp-content/plugins/partdo-core/elementor/classes/class-helpers-functions.php y en las líneas 271, 287, 289 y 291 se cambie el nombre de la función por custom_partdo_product_type1,2,3.
- * Version: 1.0
+ * Plugin Name: Custom Partdo WC Plugin
+ * Description: Muestra el stock numérico en los productos de la tienda, más información de como editar el plugin en la documentación.
  * Author: Abraham Peña
+ * Author URI: https://github.com/tonycito
+ * Version: 1.0.0
+ * License: GPL2
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
+
+ add_filter('plugin_row_meta', 'custom_plugin_row_meta', 10, 2);
+
+function custom_plugin_row_meta($links, $file) {
+    // Reemplaza esto con el nombre de tu archivo principal del plugin
+    if ($file === plugin_basename(__FILE__)) {
+        $new_links = array(
+            '<a href="https://github.com/tonycito/plugin-wp-stock" target="_blank">Documentación</a>'
+        );
+        return array_merge($links, $new_links);
+    }
+
+    return $links;
+}
+
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
