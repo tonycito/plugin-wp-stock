@@ -430,7 +430,7 @@ function custom_partdo_product_type2() {
 		$output .= '</div>';
 		if ($stock_status == 'instock') {
     $output .= '<div class="product-stock in-stock">';
-    $output .= '<i class="klbth-icon-ecommerce-package-ready tony"></i><span>';
+    $output .= '<i class="klbth-icon-ecommerce-package-ready"></i><span>';
     if ($managestock && $stock_quantity !== null && $stock_quantity > 0) {
         $output .= sprintf(__('Cantidad disponible: %d', 'partdo'), esc_html($stock_quantity));
     } else {
@@ -663,3 +663,26 @@ function custom_partdo_product_type3(){
 	
 	return $output;
 }
+
+
+// Stock personalizado pagina del producto
+add_filter('woocommerce_get_stock_html', function($html, $product) {
+    $stock_status   = $product->get_stock_status();
+    $managestock    = $product->managing_stock();
+    $stock_quantity = $product->get_stock_quantity();
+
+    if ( $stock_status == 'instock' ) {
+        $output = '<div class="product-stock stock in-stock">';
+        if ( $managestock && $stock_quantity !== null && $stock_quantity > 0 ) {
+            $output .= sprintf( __( 'Cantidad disponible: %d', 'partdo' ), esc_html( $stock_quantity ) );
+        } else {
+            $output .= __( 'In Stock', 'partdo' );
+        }
+        $output .= '</div>';
+    } else {
+        $output = '<div class="product-stock stock out-of-stock">';
+        $output .= sprintf( __( 'Producto agotado', 'partdo' ));
+        $output .= '</div>';
+    }
+    return $output;
+}, 10, 2);
