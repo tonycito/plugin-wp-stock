@@ -698,6 +698,9 @@ add_filter('woocommerce_get_stock_html', function($html, $product) {
 
 
 add_action('woocommerce_single_product_summary', function() {
+		 if ( ! is_user_logged_in() ) {
+        return '';
+    }
     global $product;
     $ficha = get_field('ficha_tecnica', $product->get_id());
     if ($ficha) {
