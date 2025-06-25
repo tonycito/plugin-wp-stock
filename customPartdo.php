@@ -64,6 +64,9 @@ function custom_partdo_product_type1() {
 	$stock_quantity = $product->get_stock_quantity();
 	$stock_format = esc_html__('Only %s left in stock','partdo');
 	$stock_poor = '';
+	$igv = '<span style="font-size: 11px; color: var(--e-global-color-primary); font-weight:500; ">con IGV</span>';
+
+
 	if($managestock && $stock_quantity < 10) {
 		$stock_poor .= '<div class="product-message color-danger">'.sprintf($stock_format, $stock_quantity).'</div>';
 	}
@@ -212,7 +215,7 @@ function custom_partdo_product_type1() {
 			}
 		}
 		$output .= '<span class="price">'; 
-		$output .= $price;
+		$output .= $price ? ' ' .$price .$igv : '';
 		$output .= '</span>';
 
 		if ($stock_status == 'instock') {
@@ -279,6 +282,7 @@ function custom_partdo_product_type2() {
 	$wishlist = get_theme_mod( 'partdo_wishlist_button', '0' );
 	$compare = get_theme_mod( 'partdo_compare_button', '0' );
 	$quickview = get_theme_mod( 'partdo_quick_view_button', '0' );
+	$igv = '<span style="font-size: 11px; color: var(--e-global-color-primary); font-weight:500; ">con IGV</span>';
 
 	$managestock = $product->managing_stock();
 	$stock_quantity = $product->get_stock_quantity();
@@ -346,7 +350,7 @@ function custom_partdo_product_type2() {
 		
 		$output .= '<div class="product-cart-form">';
 		$output .= '<span class="price">'; 
-		$output .= $price;
+		$output .= $price .$igv ."tony";//agregado el igv
 		$output .= '</span>';
 			ob_start();
 			woocommerce_template_loop_add_to_cart();
@@ -421,8 +425,8 @@ function custom_partdo_product_type2() {
 		}
 		
 		$output .= '<div class="product-cart-form">';
-		$output .= '<span class="price">'; 
-		$output .= $price;
+		$output .= '<span class="price" style="flex-direction: row; align-items: end; gap: 6px;">'; 
+		$output .= $price ? ' ' .$price .$igv : '';
 		$output .= '</span>';
 			ob_start();
 			woocommerce_template_loop_add_to_cart();
@@ -479,6 +483,8 @@ function custom_partdo_product_type3(){
 	$stock_quantity = $product->get_stock_quantity();
 	$stock_format = esc_html__('Only %s left in stock','partdo');
 	$stock_poor = '';
+	$igv = '<span style="font-size: 11px; color: var(--e-global-color-primary); font-weight:500; ">con IGV</span>';
+
 	if($managestock && $stock_quantity < 10) {
 		$stock_poor .= '<div class="product-message color-danger">'.sprintf($stock_format, $stock_quantity).'</div>';
 	}
@@ -624,7 +630,7 @@ function custom_partdo_product_type3(){
 		}
 		
 		$output .= '<span class="price">'; 
-		$output .= $price;
+		$output .= $price ? ' ' .$price .$igv : '';
 		$output .= '</span>';
 		
 		if($managestock && $stock_quantity > 0) {
@@ -667,6 +673,7 @@ function custom_partdo_product_type3(){
 
 // Stock personalizado pagina del producto
 add_filter('woocommerce_get_stock_html', function($html, $product) {
+
     $stock_status   = $product->get_stock_status();
     $managestock    = $product->managing_stock();
     $stock_quantity = $product->get_stock_quantity();
@@ -674,7 +681,8 @@ add_filter('woocommerce_get_stock_html', function($html, $product) {
     if ( $stock_status == 'instock' ) {
         $output = '<div class="product-stock stock in-stock">';
         if ( $managestock && $stock_quantity !== null && $stock_quantity > 0 ) {
-            $output .= sprintf( __( 'Cantidad disponible: %d', 'partdo' ), esc_html( $stock_quantity ) );
+						$unidad = get_field('unidad_de_medida', $product->get_id());
+						$output .= sprintf( __( 'Cantidad disponible: %d%s', 'partdo' ), esc_html( $stock_quantity ),$unidad ? ' - ' . esc_html( $unidad ) : '');
         } else {
             $output .= __( 'In Stock', 'partdo' );
         }
@@ -685,4 +693,26 @@ add_filter('woocommerce_get_stock_html', function($html, $product) {
         $output .= '</div>';
     }
     return $output;
+
 }, 10, 2);
+
+
+add_action('woocommerce_single_product_summary', function() {
+    global $product;
+    $ficha = get_field('ficha_tecnica', $product->get_id());
+    if ($ficha) {
+        echo '<div class="button-ficha-tecnica" style="margin-top:10px;">';
+        echo '<a href="' . esc_url($ficha) . '" class="btn-ficha-tecnica" target="_blank" rel="noopener noreferrer">Ver Ficha técnica</a>';
+        echo '</div>';
+    }
+}, 31);
+
+// Enqueue custom CSS for the plugin
+add_action('wp_enqueue_scripts', function() {
+    wp_enqueue_style(
+        'custom-partdo-wp-style',
+        plugin_dir_url(__FILE__) . 'custom-partdo-wp.css',
+        [],
+        '1.0.0'
+    );
+});

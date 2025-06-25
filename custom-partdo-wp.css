@@ -1,0 +1,14 @@
+.button-ficha-tecnica .btn-ficha-tecnica {
+  color: var(--color-primary);
+  border-radius: 6px;
+  padding: 8px 18px;
+  text-decoration: none;
+  display: inline-block;
+  font-family: var(--theme-primary-font);
+  text-decoration: underline;
+  font-weight: 500;
+}
+.button-ficha-tecnica .btn-ficha-tecnica:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+}
