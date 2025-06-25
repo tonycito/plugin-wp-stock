@@ -64,7 +64,7 @@ function custom_partdo_product_type1() {
 	$stock_quantity = $product->get_stock_quantity();
 	$stock_format = esc_html__('Only %s left in stock','partdo');
 	$stock_poor = '';
-	$igv = '<span style="font-size: 11px; color: var(--e-global-color-primary); font-weight:500; ">con IGV</span>';
+	$igv = '<span style="font-size: 11px; color: var(--e-global-color-primary); font-weight:500; ">con IGVs</span>';
 
 
 	if($managestock && $stock_quantity < 10) {
@@ -215,7 +215,7 @@ function custom_partdo_product_type1() {
 			}
 		}
 		$output .= '<span class="price">'; 
-		$output .= $price ? ' ' .$price .$igv : '';
+		$output .= $price ? ' ' . $price . (is_numeric(strip_tags(preg_replace('/[^\d.,]/', '', $price))) ? $igv : '') : '';
 		$output .= '</span>';
 
 		if ($stock_status == 'instock') {
@@ -282,7 +282,7 @@ function custom_partdo_product_type2() {
 	$wishlist = get_theme_mod( 'partdo_wishlist_button', '0' );
 	$compare = get_theme_mod( 'partdo_compare_button', '0' );
 	$quickview = get_theme_mod( 'partdo_quick_view_button', '0' );
-	$igv = '<span style="font-size: 11px; color: var(--e-global-color-primary); font-weight:500; ">con IGV</span>';
+	$igv = '<span style="font-size: 11px; color: var(--e-global-color-primary); font-weight:500; ">con IGVs</span>';
 
 	$managestock = $product->managing_stock();
 	$stock_quantity = $product->get_stock_quantity();
@@ -350,7 +350,7 @@ function custom_partdo_product_type2() {
 		
 		$output .= '<div class="product-cart-form">';
 		$output .= '<span class="price">'; 
-		$output .= $price .$igv ."tony";//agregado el igv
+		$output .= $price ? ' ' . $price . (is_numeric(strip_tags(preg_replace('/[^\d.,]/', '', $price))) ? $igv : '') : '';
 		$output .= '</span>';
 			ob_start();
 			woocommerce_template_loop_add_to_cart();
@@ -425,8 +425,8 @@ function custom_partdo_product_type2() {
 		}
 		
 		$output .= '<div class="product-cart-form">';
-		$output .= '<span class="price" style="flex-direction: row; align-items: end; gap: 6px;">'; 
-		$output .= $price ? ' ' .$price .$igv : '';
+		$output .= '<span class="price" style="flex-direction: row; align-items: end; gap: 6px;">';
+		$output .= $price ? ' ' . $price . (is_numeric(strip_tags(preg_replace('/[^\d.,]/', '', $price))) ? $igv : '') : '';
 		$output .= '</span>';
 			ob_start();
 			woocommerce_template_loop_add_to_cart();
@@ -483,7 +483,7 @@ function custom_partdo_product_type3(){
 	$stock_quantity = $product->get_stock_quantity();
 	$stock_format = esc_html__('Only %s left in stock','partdo');
 	$stock_poor = '';
-	$igv = '<span style="font-size: 11px; color: var(--e-global-color-primary); font-weight:500; ">con IGV</span>';
+	$igv = '<span style="font-size: 11px; color: var(--e-global-color-primary); font-weight:500; ">con IGVs</span>';
 
 	if($managestock && $stock_quantity < 10) {
 		$stock_poor .= '<div class="product-message color-danger">'.sprintf($stock_format, $stock_quantity).'</div>';
