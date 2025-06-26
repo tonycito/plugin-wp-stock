@@ -131,7 +131,7 @@ function custom_partdo_product_type1() {
 		}
 			
 		$output .= '<span class="price">'; 
-		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
+		$output .= is_user_logged_in() ? (($igvmostrar == "Mostrar IGV") ? $price . $igv : $price) : '';
 		$output .= '</span>';
 		
     if ($stock_status == 'instock') {
@@ -216,7 +216,7 @@ function custom_partdo_product_type1() {
 			}
 		}
 		$output .= '<span class="price">'; 
-		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
+		$output .= is_user_logged_in() ? (($igvmostrar == "Mostrar IGV") ? $price . $igv : $price) : '';
 		$output .= '</span>';
 
 		if ($stock_status == 'instock') {
@@ -353,7 +353,7 @@ function custom_partdo_product_type2() {
 		
 		$output .= '<div class="product-cart-form">';
 		$output .= '<span class="price">'; 
-		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
+		$output .= is_user_logged_in() ? (($igvmostrar == "Mostrar IGV") ? $price . $igv : $price) : '';
 		$output .= '</span>';
 			ob_start();
 			woocommerce_template_loop_add_to_cart();
@@ -429,7 +429,7 @@ function custom_partdo_product_type2() {
 		
 		$output .= '<div class="product-cart-form">';
 		$output .= '<span class="price" style="flex-direction: row; align-items: end; gap: 6px;">';
-		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
+		$output .= is_user_logged_in() ? (($igvmostrar == "Mostrar IGV") ? $price . $igv : $price) : '';
 		$output .= '</span>';
 			ob_start();
 			woocommerce_template_loop_add_to_cart();
@@ -551,7 +551,7 @@ function custom_partdo_product_type3(){
 		}
 		
 		$output .= '<span class="price">'; 
-		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
+		$output .= is_user_logged_in() ? (($igvmostrar == "Mostrar IGV") ? $price . $igv : $price) : '';
 		$output .= '</span>';
 		
 		if($managestock && $stock_quantity > 0) {
@@ -634,7 +634,7 @@ function custom_partdo_product_type3(){
 		}
 		
 		$output .= '<span class="price">';
-		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
+		$output .= is_user_logged_in() ? (($igvmostrar == "Mostrar IGV") ? $price . $igv : $price) : '';
 		$output .= '</span>';
 		
 		if($managestock && $stock_quantity > 0) {
