@@ -131,11 +131,12 @@ function custom_partdo_product_type1() {
 		}
 			
 		$output .= '<span class="price">'; 
-		if (is_user_logged_in()) {
-    		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
-		}else {
-				$output .= $price;
-		}
+		// if (is_user_logged_in()) {
+    // 		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
+		// }else {
+		// 		$output .= $price;
+		// }
+		$output .= $price;
 		$output .= '</span>';
 		
     if ($stock_status == 'instock') {
@@ -220,11 +221,12 @@ function custom_partdo_product_type1() {
 			}
 		}
 		$output .= '<span class="price">'; 
-				if (is_user_logged_in()) {
-    		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
-		}else {
-				$output .= $price;
-		}
+		// 		if (is_user_logged_in()) {
+    // 		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
+		// }else {
+		// 		$output .= $price;
+		// }
+		$output .= $price;
 		$output .= '</span>';
 
 		if ($stock_status == 'instock') {
@@ -361,11 +363,12 @@ function custom_partdo_product_type2() {
 		
 		$output .= '<div class="product-cart-form">';
 		$output .= '<span class="price">'; 
-				if (is_user_logged_in()) {
-    		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
-		}else {
-				$output .= $price;
-		}
+		// 		if (is_user_logged_in()) {
+    // 		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
+		// }else {
+		// 		$output .= $price;
+		// }
+		$output .= $price;
 		$output .= '</span>';
 			ob_start();
 			woocommerce_template_loop_add_to_cart();
@@ -441,11 +444,12 @@ function custom_partdo_product_type2() {
 		
 		$output .= '<div class="product-cart-form">';
 		$output .= '<span class="price" style="flex-direction: row; align-items: end; gap: 6px;">';
-		if (is_user_logged_in()) {
-    		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
-		}else {
-				$output .= $price;
-		}
+		// if (is_user_logged_in()) {
+    // 		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
+		// }else {
+		// 		$output .= $price;
+		// }
+		$output .= $price;
 		$output .= '</span>';
 			ob_start();
 			woocommerce_template_loop_add_to_cart();
@@ -567,11 +571,12 @@ function custom_partdo_product_type3(){
 		}
 		
 		$output .= '<span class="price">'; 
-		if (is_user_logged_in()) {
-    		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
-		}else {
-				$output .= $price;
-		}
+		// if (is_user_logged_in()) {
+    // 		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
+		// }else {
+		// 		$output .= $price;
+		// }
+		$output .= $price;
 		$output .= '</span>';
 		
 		if($managestock && $stock_quantity > 0) {
@@ -654,11 +659,12 @@ function custom_partdo_product_type3(){
 		}
 		
 		$output .= '<span class="price">';
-		if (is_user_logged_in()) {
-    		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
-		}else {
-				$output .= $price;
-		}
+		// if (is_user_logged_in()) {
+    // 		$output .= ($igvmostrar == "Mostrar IGV") ? $price . $igv : $price;
+		// }else {
+		// 		$output .= $price;
+		// }
+		$output .= $price;
 		$output .= '</span>';
 		
 		if($managestock && $stock_quantity > 0) {
